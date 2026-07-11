@@ -10,6 +10,8 @@ import NotFound from './pages/public/NotFound.jsx';
 // Patient Pages
 import PatientDashboard from './pages/patient/PatientDashboard.jsx';
 import BookAppointment from './pages/patient/BookAppointment.jsx';
+import PatientAppointments from './pages/patient/PatientAppointments.jsx';
+import PatientProfile from './pages/patient/PatientProfile.jsx';
 
 // Doctor Pages
 import DoctorDashboard from './pages/doctor/DoctorDashboard.jsx';
@@ -31,6 +33,8 @@ export default function App() {
         {/* Patient Routes */}
         <Route path="/patient" element={<PatientDashboard />} />
         <Route path="/patient/book" element={<BookAppointment />} />
+        <Route path="/patient/appointments" element={<PatientAppointments />} />
+        <Route path="/patient/profile" element={<PatientProfile />} />
 
         {/* Doctor Routes */}
         <Route path="/doctor" element={<DoctorDashboard />} />
