@@ -15,7 +15,9 @@ import PatientProfile from './pages/patient/PatientProfile.jsx';
 
 // Doctor Pages
 import DoctorDashboard from './pages/doctor/DoctorDashboard.jsx';
+import DoctorSchedule from './pages/doctor/DoctorSchedule.jsx';
 import Consultation from './pages/doctor/Consultation.jsx';
+import DoctorProfile from './pages/doctor/DoctorProfile.jsx';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard.jsx';
@@ -38,7 +40,10 @@ export default function App() {
 
         {/* Doctor Routes */}
         <Route path="/doctor" element={<DoctorDashboard />} />
+        <Route path="/doctor/schedule" element={<DoctorSchedule />} />
+        <Route path="/doctor/consultation/:appointmentId" element={<Consultation />} />
         <Route path="/doctor/consultation" element={<Consultation />} />
+        <Route path="/doctor/profile" element={<DoctorProfile />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminDashboard />} />
