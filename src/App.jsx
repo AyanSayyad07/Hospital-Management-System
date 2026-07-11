@@ -22,6 +22,8 @@ import DoctorProfile from './pages/doctor/DoctorProfile.jsx';
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import ManageDoctors from './pages/admin/ManageDoctors.jsx';
+import ManagePatients from './pages/admin/ManagePatients.jsx';
+import AllAppointments from './pages/admin/AllAppointments.jsx';
 
 export default function App() {
   return (
@@ -48,6 +50,8 @@ export default function App() {
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/doctors" element={<ManageDoctors />} />
+        <Route path="/admin/patients" element={<ManagePatients />} />
+        <Route path="/admin/appointments" element={<AllAppointments />} />
 
         {/* 404 Fallback Route */}
         <Route path="*" element={<NotFound />} />
