@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 // Public & Auth Pages
 import LandingPage from './pages/public/LandingPage.jsx';
@@ -12,6 +13,7 @@ import PatientDashboard from './pages/patient/PatientDashboard.jsx';
 import BookAppointment from './pages/patient/BookAppointment.jsx';
 import PatientAppointments from './pages/patient/PatientAppointments.jsx';
 import PatientProfile from './pages/patient/PatientProfile.jsx';
+import MedicalRecords from './pages/patient/MedicalRecords.jsx';
 
 // Doctor Pages
 import DoctorDashboard from './pages/doctor/DoctorDashboard.jsx';
@@ -33,27 +35,35 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/not-found" element={<NotFound />} />
 
-        {/* Patient Routes */}
-        <Route path="/patient" element={<PatientDashboard />} />
-        <Route path="/patient/book" element={<BookAppointment />} />
-        <Route path="/patient/appointments" element={<PatientAppointments />} />
-        <Route path="/patient/profile" element={<PatientProfile />} />
+        {/* Patient Protected Routes */}
+        <Route element={<ProtectedRoute role="Patient" />}>
+          <Route path="/patient" element={<PatientDashboard />} />
+          <Route path="/patient/book" element={<BookAppointment />} />
+          <Route path="/patient/appointments" element={<PatientAppointments />} />
+          <Route path="/patient/records" element={<MedicalRecords />} />
+          <Route path="/patient/profile" element={<PatientProfile />} />
+        </Route>
 
-        {/* Doctor Routes */}
-        <Route path="/doctor" element={<DoctorDashboard />} />
-        <Route path="/doctor/schedule" element={<DoctorSchedule />} />
-        <Route path="/doctor/consultation/:appointmentId" element={<Consultation />} />
-        <Route path="/doctor/consultation" element={<Consultation />} />
-        <Route path="/doctor/profile" element={<DoctorProfile />} />
+        {/* Doctor Protected Routes */}
+        <Route element={<ProtectedRoute role="Doctor" />}>
+          <Route path="/doctor" element={<DoctorDashboard />} />
+          <Route path="/doctor/schedule" element={<DoctorSchedule />} />
+          <Route path="/doctor/consultation/:appointmentId" element={<Consultation />} />
+          <Route path="/doctor/consultation" element={<Consultation />} />
+          <Route path="/doctor/profile" element={<DoctorProfile />} />
+        </Route>
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/doctors" element={<ManageDoctors />} />
-        <Route path="/admin/patients" element={<ManagePatients />} />
-        <Route path="/admin/appointments" element={<AllAppointments />} />
+        {/* Admin Protected Routes */}
+        <Route element={<ProtectedRoute role="Admin" />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/doctors" element={<ManageDoctors />} />
+          <Route path="/admin/patients" element={<ManagePatients />} />
+          <Route path="/admin/appointments" element={<AllAppointments />} />
+        </Route>
 
-        {/* 404 Fallback Route */}
+        {/* Catch-all 404 Route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

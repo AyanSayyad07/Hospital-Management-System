@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { HeartPulse, Mail, Lock, ArrowRight, CheckCircle2, AlertCircle, Shield } from 'lucide-react';
 
@@ -12,6 +12,11 @@ export default function Login() {
   
   const [statusMsg, setStatusMsg] = useState({ type: '', text: '' });
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Clear mock auth state when visiting login
+    localStorage.removeItem('currentUser');
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,6 +50,10 @@ export default function Login() {
         type: 'success',
         text: `Logged in as ${formData.role.toUpperCase()}! Credentials logged to console.`
       });
+
+      // Set mock auth state
+      const userRole = formData.role.charAt(0).toUpperCase() + formData.role.slice(1);
+      localStorage.setItem('currentUser', JSON.stringify({ role: userRole }));
 
       // Simulate routing based on role after brief delay
       setTimeout(() => {
