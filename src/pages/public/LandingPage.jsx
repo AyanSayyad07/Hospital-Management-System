@@ -443,59 +443,68 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Hospital Stats Section */}
-      <section id="stats" className="scroll-mt-20 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 border-y border-slate-200 relative">
+      {/* Hospital Stats & Action Section */}
+      <section id="stats" className="scroll-mt-20 pt-8 sm:pt-10 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50/70 border-t border-slate-200/80 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-            <h2 className="text-xs sm:text-sm font-semibold text-blue-600 tracking-wider uppercase mb-1.5">Proven Clinical Impact</h2>
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
+          {/* Section Heading */}
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-xs sm:text-sm font-bold text-blue-600 tracking-wider uppercase mb-1.5">Proven Clinical Impact</h2>
+            <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2 tracking-tight">
               Hospital Performance & Scale
             </p>
-            <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto">
+            <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               Real-time statistics demonstrating our unwavering commitment to compassionate care, clinical excellence, and rapid medical response.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {stats.map((stat, i) => (
-              <div 
-                key={i} 
-                className="bg-white border border-slate-200/90 p-6 sm:p-8 rounded-3xl text-center flex flex-col justify-center items-center shadow-xs hover:shadow-md hover:border-blue-400 transition-all duration-300 group"
-              >
-                <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">
-                  {stat.value}
-                </span>
-                <span className="text-xs sm:text-sm font-semibold text-slate-700">{stat.label}</span>
-              </div>
-            ))}
+          {/* 4 Stat Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+            {stats.map((stat, i) => {
+              const isHighlight = stat.label.includes('Satisfaction') || stat.value === '99.4%';
+              return (
+                <div 
+                  key={i} 
+                  className={`bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 text-center flex flex-col justify-center items-center transition-all duration-300 ${
+                    isHighlight 
+                      ? 'border-2 border-blue-400 shadow-md shadow-blue-500/10' 
+                      : 'border border-slate-200/90 shadow-xs hover:border-slate-300'
+                  }`}
+                >
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-1.5">
+                    {stat.value}
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-700">{stat.label}</span>
+                </div>
+              );
+            })}
           </div>
-        </div>
-      </section>
 
-      {/* Call to Action Banner */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 p-8 sm:p-12 lg:p-16 rounded-3xl border border-blue-500/30 text-center relative overflow-hidden shadow-2xl text-white">
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 relative z-10">
-            Ready to Take Control of Your Healthcare?
-          </h2>
-          <p className="text-blue-100 max-w-2xl mx-auto text-base sm:text-lg mb-8 relative z-10">
-            Join thousands of satisfied patients and doctors utilizing the fastest and most intuitive healthcare management dashboard.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
-            <Link 
-              to="/register" 
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-blue-700 bg-white hover:bg-blue-50 shadow-xl transition-all"
-            >
-              Get Started as Patient
-            </Link>
-            <Link 
-              to="/login" 
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-white bg-blue-700/60 border border-blue-400/40 hover:bg-blue-700 transition-all"
-            >
-              Staff & Doctor Portal
-            </Link>
+          {/* Call to Action Banner */}
+          <div className="max-w-4xl mx-auto mt-10 sm:mt-12">
+            <div className="bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 p-8 sm:p-10 rounded-3xl text-center relative overflow-hidden shadow-xl text-white">
+              <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+              
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2.5 relative z-10">
+                Ready to Take Control of Your Healthcare?
+              </h3>
+              <p className="text-blue-100 max-w-xl mx-auto text-xs sm:text-sm md:text-base mb-6 sm:mb-8 leading-relaxed relative z-10">
+                Join thousands of satisfied patients and doctors utilizing the fastest and most intuitive healthcare management dashboard.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 relative z-10">
+                <Link 
+                  to="/register" 
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm text-blue-700 bg-white hover:bg-slate-50 shadow-md transition-all"
+                >
+                  Get Started as Patient
+                </Link>
+                <Link 
+                  to="/login" 
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-sm text-white bg-blue-700/80 hover:bg-blue-700 border border-blue-400/40 transition-all"
+                >
+                  Staff & Doctor Portal
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
