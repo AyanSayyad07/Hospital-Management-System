@@ -82,15 +82,15 @@ export default function LandingPage() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['services', 'about', 'stats'];
-      const scrollPosition = window.scrollY + 140;
+      const scrollPosition = window.scrollY + 100;
 
       let current = '';
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
-          const top = el.offsetTop;
+          const top = el.getBoundingClientRect().top + window.scrollY;
           const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
+          if (scrollPosition >= top - 20 && scrollPosition < top + height) {
             current = sectionId;
           }
         }
