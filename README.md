@@ -1,16 +1,29 @@
-# React + Vite
+# Loop Hospitals — Hospital Management System (HMS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A next-generation healthcare management portal built for **Loop Hospitals**, delivering seamless workflows across patients, doctors, and hospital administrators.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Public Portal**: Interactive landing page with specialties, core stats, smooth scroll navigation, and emergency support.
+- **Patient Portal**: Online appointment booking, real-time consultation tracking, digital health records, and profile management.
+- **Doctor Portal**: Daily clinic schedules, patient consultation room with real-time prescription management, and doctor profiles.
+- **Admin Control Panel**: Comprehensive doctor and patient roster management, department allocation, and appointment oversight.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, React Router 7, TailwindCSS v4, Lucide Icons, Vite
+- **Automations**: Real-time auto-push git watcher (`node auto-push.js`)
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Run auto-push watcher
+npm run auto-push
+```
+
