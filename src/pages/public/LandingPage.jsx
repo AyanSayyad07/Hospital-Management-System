@@ -67,7 +67,7 @@ export default function LandingPage() {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 75;
+      const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
       window.scrollTo({
@@ -293,11 +293,11 @@ export default function LandingPage() {
       </section>
 
       {/* Key Services Section */}
-      <section id="services" className="scroll-mt-20 pt-8 pb-14 sm:pt-10 sm:pb-16 md:pt-12 md:pb-20 bg-slate-100/70 border-y border-slate-200 px-4 sm:px-6 lg:px-8 relative">
+      <section id="services" className="scroll-mt-20 py-10 sm:py-14 md:py-16 bg-slate-100/70 border-y border-slate-200 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-xs sm:text-sm font-semibold text-blue-600 tracking-wider uppercase mb-2">Our Core Specialties</h2>
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 sm:mb-3 tracking-tight">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+            <h2 className="text-xs sm:text-sm font-semibold text-blue-600 tracking-wider uppercase mb-1.5">Our Core Specialties</h2>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
               Comprehensive Healthcare Services
             </p>
             <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto">
@@ -305,16 +305,16 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {services.map((service, index) => (
               <div 
                 key={index} 
-                className="bg-white border border-slate-200/80 rounded-2xl p-5 sm:p-6 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300 group shadow-sm shadow-slate-200/50 flex flex-col justify-start"
+                className="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300 group shadow-xs flex flex-col justify-start"
               >
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-50/80 border border-blue-100 flex items-center justify-center mb-3.5 group-hover:scale-105 group-hover:bg-blue-100/80 transition-all duration-300">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-50/80 border border-blue-100 flex items-center justify-center mb-3 group-hover:scale-105 group-hover:bg-blue-100/80 transition-all duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-base font-bold text-slate-900 mb-1.5 group-hover:text-blue-600 transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
