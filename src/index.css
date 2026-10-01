@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #0369A1;
+  --color-secondary: #15803D;
+  --color-alert: #B91C1C;
+  --color-warning: #B45309;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-textPrimary: #0F172A;
+}
+
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -50,6 +61,10 @@
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

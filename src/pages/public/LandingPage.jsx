@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   HeartPulse, 
@@ -11,38 +11,40 @@ import {
   PhoneCall, 
   CheckCircle2, 
   Users, 
-  Award 
+  Award,
+  Menu,
+  X
 } from 'lucide-react';
 
 export default function LandingPage() {
   const services = [
     {
-      icon: <Clock className="w-8 h-8 text-rose-500" />,
+      icon: <Clock className="w-6 h-6 text-rose-500" />,
       title: '24/7 Emergency Care',
       description: 'Immediate trauma support and critical care response with real-time specialist & bed availability tracking around the clock.'
     },
     {
-      icon: <Stethoscope className="w-8 h-8 text-indigo-500" />,
+      icon: <Stethoscope className="w-6 h-6 text-indigo-500" />,
       title: 'Expert Specialists',
       description: 'Consult with board-certified physicians, cardiologists, neurologists, and surgeons tailored to your specific health needs.'
     },
     {
-      icon: <Calendar className="w-8 h-8 text-emerald-500" />,
+      icon: <Calendar className="w-6 h-6 text-emerald-500" />,
       title: 'Instant Online Booking',
       description: 'Schedule outpatient visits, diagnostic appointments, and video consultations in seconds with automated reminders.'
     },
     {
-      icon: <ShieldCheck className="w-8 h-8 text-sky-500" />,
+      icon: <ShieldCheck className="w-6 h-6 text-sky-500" />,
       title: 'Digital Health Records',
       description: 'Encrypted, instant, and secure access to your complete medical history, lab diagnostics, and prescription refills.'
     },
     {
-      icon: <Activity className="w-8 h-8 text-amber-500" />,
+      icon: <Activity className="w-6 h-6 text-amber-500" />,
       title: 'Smart Consultation Queue',
       description: 'Live doctor OPD status and intelligent queue monitoring to eliminate waiting room delays and optimize clinic flow.'
     },
     {
-      icon: <HeartPulse className="w-8 h-8 text-purple-500" />,
+      icon: <HeartPulse className="w-6 h-6 text-purple-500" />,
       title: 'Integrated Telemedicine',
       description: 'High-definition virtual visits and remote health monitoring powered by our comprehensive MERN stack platform.'
     }
@@ -55,42 +57,178 @@ export default function LandingPage() {
     { label: 'Emergency Support', value: '24/7/365' }
   ];
 
+  const [activeSection, setActiveSection] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const scrollToSection = (e, id) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 75;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      window.history.pushState(null, '', `#${id}`);
+      setActiveSection(id);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['services', 'about', 'stats'];
+      const scrollPosition = window.scrollY + 140;
+
+      let current = '';
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            current = sectionId;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white overflow-x-hidden">
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.history.pushState(null, '', window.location.pathname);
+              setActiveSection('');
+            }}
+            className="flex items-center space-x-3 group cursor-pointer"
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-300">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
               MediPulse <span className="text-indigo-400 font-medium text-sm sm:text-base hidden sm:inline">| Hospital Management</span>
             </span>
-          </div>
+          </a>
 
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-            <a href="#services" className="hover:text-indigo-400 transition-colors">Key Services</a>
-            <a href="#about" className="hover:text-indigo-400 transition-colors">Why Choose Us</a>
-            <a href="#stats" className="hover:text-indigo-400 transition-colors">Hospital Stats</a>
+          <nav className="hidden md:flex items-center space-x-3 text-sm font-medium text-slate-300">
+            <a 
+              href="#services" 
+              onClick={(e) => scrollToSection(e, 'services')}
+              className={`px-3.5 py-2 rounded-lg transition-all duration-300 cursor-pointer ${
+                activeSection === 'services'
+                  ? 'text-white bg-slate-900 border border-indigo-500/40 shadow-sm shadow-indigo-500/20'
+                  : 'hover:text-white hover:bg-slate-900/60'
+              }`}
+            >
+              Key Services
+            </a>
+            <a 
+              href="#about" 
+              onClick={(e) => scrollToSection(e, 'about')}
+              className={`px-3.5 py-2 rounded-lg transition-all duration-300 cursor-pointer ${
+                activeSection === 'about'
+                  ? 'text-white bg-slate-900 border border-indigo-500/40 shadow-sm shadow-indigo-500/20'
+                  : 'hover:text-white hover:bg-slate-900/60'
+              }`}
+            >
+              Why Choose Us
+            </a>
+            <a 
+              href="#stats" 
+              onClick={(e) => scrollToSection(e, 'stats')}
+              className={`px-3.5 py-2 rounded-lg transition-all duration-300 cursor-pointer ${
+                activeSection === 'stats'
+                  ? 'text-white bg-slate-900 border border-indigo-500/40 shadow-sm shadow-indigo-500/20'
+                  : 'hover:text-white hover:bg-slate-900/60'
+              }`}
+            >
+              Hospital Stats
+            </a>
           </nav>
 
-          <div className="flex items-center space-x-3 sm:space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Link 
               to="/login" 
-              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900 transition-all border border-transparent hover:border-slate-800"
+              className="hidden sm:inline-flex px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900 transition-all border border-transparent hover:border-slate-800"
             >
               Sign In
             </Link>
             <Link 
               to="/register" 
-              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center space-x-2"
+              className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center space-x-1.5 sm:space-x-2"
             >
               <span>Register Patient</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
+            <button 
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden px-4 pt-2 pb-6 bg-slate-950/95 border-b border-slate-800 backdrop-blur-xl">
+            <div className="flex flex-col space-y-2">
+              <a 
+                href="#services" 
+                onClick={(e) => scrollToSection(e, 'services')}
+                className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                  activeSection === 'services' ? 'text-white bg-slate-900 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
+                }`}
+              >
+                Key Services
+              </a>
+              <a 
+                href="#about" 
+                onClick={(e) => scrollToSection(e, 'about')}
+                className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                  activeSection === 'about' ? 'text-white bg-slate-900 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
+                }`}
+              >
+                Why Choose Us
+              </a>
+              <a 
+                href="#stats" 
+                onClick={(e) => scrollToSection(e, 'stats')}
+                className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                  activeSection === 'stats' ? 'text-white bg-slate-900 border border-indigo-500/30' : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
+                }`}
+              >
+                Hospital Stats
+              </a>
+              <div className="pt-2 border-t border-slate-900 flex flex-col space-y-2">
+                <Link 
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-2.5 text-center rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-slate-900 border border-slate-800"
+                >
+                  Sign In
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -155,31 +293,31 @@ export default function LandingPage() {
       </section>
 
       {/* Key Services Section */}
-      <section id="services" className="py-24 bg-slate-900/50 border-y border-slate-800/80 px-4 sm:px-6 lg:px-8 relative">
+      <section id="services" className="scroll-mt-20 pt-8 pb-14 sm:pt-10 sm:pb-16 md:pt-12 md:pb-20 bg-slate-900/50 border-y border-slate-800/80 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-sm font-semibold text-indigo-400 tracking-wider uppercase mb-3">Our Core Specialties</h2>
-            <p className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-xs sm:text-sm font-semibold text-indigo-400 tracking-wider uppercase mb-2">Our Core Specialties</h2>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
               Comprehensive Healthcare Services
             </p>
-            <p className="text-slate-400 text-base sm:text-lg">
+            <p className="text-slate-400 text-xs sm:text-sm md:text-base max-w-2xl mx-auto">
               Designed for both patients and healthcare professionals, our portal brings clarity, speed, and precision to medical management.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <div 
                 key={index} 
-                className="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-8 hover:border-slate-700 hover:bg-slate-900/60 transition-all duration-300 group shadow-lg shadow-black/20"
+                className="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-5 sm:p-6 hover:border-indigo-500/50 hover:bg-slate-900/60 transition-all duration-300 group shadow-lg shadow-black/20 flex flex-col justify-start"
               >
-                <div className="w-14 h-14 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center mb-3.5 group-hover:scale-105 group-hover:border-indigo-500/30 transition-all duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -189,7 +327,7 @@ export default function LandingPage() {
       </section>
 
       {/* Why Choose Us & Stats Section */}
-      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
+      <section id="about" className="scroll-mt-24 py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
@@ -243,7 +381,7 @@ export default function LandingPage() {
             </div>
 
             {/* Stats Box Grid */}
-            <div id="stats" className="grid grid-cols-2 gap-6 bg-slate-900/60 p-6 sm:p-8 rounded-3xl border border-slate-800 relative">
+            <div id="stats" className="scroll-mt-28 grid grid-cols-2 gap-6 bg-slate-900/60 p-6 sm:p-8 rounded-3xl border border-slate-800 relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-rose-600 rounded-3xl blur opacity-20 -z-10" />
               {stats.map((stat, i) => (
                 <div key={i} className="bg-slate-950/80 border border-slate-800/80 p-6 sm:p-8 rounded-2xl text-center flex flex-col justify-center items-center">
