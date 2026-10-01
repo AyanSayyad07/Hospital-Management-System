@@ -119,24 +119,24 @@ export default function DoctorDashboard() {
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-600 selection:text-white pb-16">
       {/* Doctor Portal Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-6 lg:px-8 shadow-xs">
-        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
+        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between relative">
+          <Link to="/" className="flex items-center space-x-3 shrink-0">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
-              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden sm:inline">| Doctor Portal</span>
+              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden xl:inline">| Doctor Portal</span>
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium absolute left-1/2 -translate-x-1/2">
             <Link to="/doctor" className="px-4 py-2 rounded-lg bg-blue-600 text-white shadow-xs font-semibold">Dashboard</Link>
-            <Link to="/doctor/schedule" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">My Schedule</Link>
-            <Link to="/doctor/consultation/APT-1092" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Live Consultation</Link>
-            <Link to="/doctor/profile" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Profile</Link>
+            <Link to="/doctor/schedule" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-semibold">My Schedule</Link>
+            <Link to="/doctor/consultation/APT-1092" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-semibold">Live Consultation</Link>
+            <Link to="/doctor/profile" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-semibold">Profile</Link>
           </nav>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 ml-auto">
             <div className="hidden lg:flex items-center space-x-3 px-3 py-1.5 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-800">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
               <span className="text-xs font-semibold">OPD Active (09:00 - 17:00)</span>
