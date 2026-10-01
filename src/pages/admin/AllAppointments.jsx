@@ -94,24 +94,24 @@ export default function AllAppointments() {
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-600 selection:text-white pb-16">
       {/* Admin Portal Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-6 lg:px-8 shadow-xs">
-        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
+        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between relative">
+          <Link to="/" className="flex items-center space-x-3 shrink-0">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
-              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
+              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden xl:inline">| Admin Control Panel</span>
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium">
-            <Link to="/admin" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Dashboard</Link>
-            <Link to="/admin/doctors" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Manage Doctors</Link>
-            <Link to="/admin/patients" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Manage Patients</Link>
+          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium absolute left-1/2 -translate-x-1/2">
+            <Link to="/admin" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-semibold">Dashboard</Link>
+            <Link to="/admin/doctors" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-semibold">Manage Doctors</Link>
+            <Link to="/admin/patients" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-semibold">Manage Patients</Link>
             <Link to="/admin/appointments" className="px-4 py-2 rounded-lg bg-blue-600 text-white shadow-xs font-semibold">All Appointments</Link>
           </nav>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 ml-auto">
             <Link to="/login" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 transition-all" title="Sign Out">
               <LogOut className="w-5 h-5" />
             </Link>
