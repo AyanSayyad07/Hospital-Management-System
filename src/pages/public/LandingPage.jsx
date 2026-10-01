@@ -326,8 +326,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Why Choose Us & Stats Section */}
-      <section id="about" className="scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Why Choose Us Section */}
+      <section id="about" className="scroll-mt-20 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
@@ -380,17 +380,94 @@ export default function LandingPage() {
               </Link>
             </div>
 
-            {/* Stats Box Grid */}
-            <div id="stats" className="scroll-mt-28 grid grid-cols-2 gap-6 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 relative shadow-sm">
-              {stats.map((stat, i) => (
-                <div key={i} className="bg-white border border-slate-200/90 p-6 sm:p-8 rounded-2xl text-center flex flex-col justify-center items-center shadow-xs">
-                  <span className="text-3xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-                    {stat.value}
-                  </span>
-                  <span className="text-xs sm:text-sm font-medium text-slate-600">{stat.label}</span>
+            {/* Loop Operations Highlights Card */}
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50/60 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs relative">
+              <div className="flex items-center justify-between pb-5 border-b border-slate-200/80 mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-xs">
+                    <HeartPulse className="w-5 h-5 animate-pulse" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">Loop Care Platform</h4>
+                    <span className="text-xs text-slate-500">Live Clinical Operations Node</span>
+                  </div>
                 </div>
-              ))}
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping mr-1.5" />
+                  Live 24/7
+                </span>
+              </div>
+
+              <div className="space-y-3.5">
+                <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 rounded-xl bg-blue-50 text-blue-600">
+                      <Clock className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-900 block">Avg. Consultation Wait</span>
+                      <span className="text-[11px] text-slate-500">Real-time OPD triage & queue</span>
+                    </div>
+                  </div>
+                  <span className="text-sm font-extrabold text-blue-600 font-mono">&lt; 4 Mins</span>
+                </div>
+
+                <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600">
+                      <ShieldCheck className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-900 block">HIPAA & NABH Tier-4</span>
+                      <span className="text-[11px] text-slate-500">End-to-end data encryption</span>
+                    </div>
+                  </div>
+                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">100% Secure</span>
+                </div>
+
+                <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 rounded-xl bg-indigo-50 text-indigo-600">
+                      <Activity className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-900 block">Digital Pharmacy & Labs</span>
+                      <span className="text-[11px] text-slate-500">Instant prescription routing</span>
+                    </div>
+                  </div>
+                  <span className="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">Instant Sync</span>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hospital Stats Section */}
+      <section id="stats" className="scroll-mt-20 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 border-y border-slate-200 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <h2 className="text-xs sm:text-sm font-semibold text-blue-600 tracking-wider uppercase mb-1.5">Proven Clinical Impact</h2>
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
+              Hospital Performance & Scale
+            </p>
+            <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto">
+              Real-time statistics demonstrating our unwavering commitment to compassionate care, clinical excellence, and rapid medical response.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {stats.map((stat, i) => (
+              <div 
+                key={i} 
+                className="bg-white border border-slate-200/90 p-6 sm:p-8 rounded-3xl text-center flex flex-col justify-center items-center shadow-xs hover:shadow-md hover:border-blue-400 transition-all duration-300 group"
+              >
+                <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">
+                  {stat.value}
+                </span>
+                <span className="text-xs sm:text-sm font-semibold text-slate-700">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
