@@ -76,7 +76,7 @@ export default function Login() {
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
             <HeartPulse className="w-5 h-5 text-white" />
           </div>
-          <span className="font-bold text-xl text-white tracking-tight">MediPulse HMS</span>
+          <span className="font-bold text-xl text-white tracking-tight">Loop Hospitals HMS</span>
         </Link>
         <Link 
           to="/" 

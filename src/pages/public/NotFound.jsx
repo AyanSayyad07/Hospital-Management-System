@@ -17,7 +17,7 @@ export default function NotFound() {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform">
             <HeartPulse className="w-6 h-6 text-white" />
           </div>
-          <span className="font-bold text-2xl text-white tracking-tight">MediPulse HMS</span>
+          <span className="font-bold text-2xl text-white tracking-tight">Loop Hospitals HMS</span>
         </Link>
       </div>
 

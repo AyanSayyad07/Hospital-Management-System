@@ -121,7 +121,7 @@ export default function LandingPage() {
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-              MediPulse <span className="text-indigo-400 font-medium text-sm sm:text-base hidden sm:inline">| Hospital Management</span>
+              Loop Hospitals <span className="text-indigo-400 font-medium text-sm sm:text-base hidden sm:inline">| Hospital Management</span>
             </span>
           </a>
 
@@ -431,7 +431,7 @@ export default function LandingPage() {
             <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
               <HeartPulse className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-white text-lg">MediPulse HMS</span>
+            <span className="font-bold text-white text-lg">Loop Hospitals HMS</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6">
@@ -446,7 +446,7 @@ export default function LandingPage() {
           </div>
 
           <p className="text-slate-500 text-xs sm:text-sm">
-            &copy; {new Date().getFullYear()} MediPulse Hospital Management System. All rights reserved.
+            &copy; {new Date().getFullYear()} Loop Hospitals Management System. All rights reserved.
           </p>
         </div>
       </footer>
