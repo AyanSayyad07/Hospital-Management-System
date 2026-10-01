@@ -154,10 +154,10 @@ export default function PatientProfile() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Digital Medical ID Card Preview */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 text-center space-y-6 shadow-xs sticky top-28">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 text-center space-y-6 shadow-xs lg:sticky lg:top-24 self-start">
             <div className="relative inline-block mx-auto">
               <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-3xl font-black text-white shadow-md mx-auto border-4 border-slate-100">
-                {profileData.fullName.split(' ').map(n => n[0]).join('')}
+                {profileData.fullName.split(' ').slice(0, 2).map(n => n[0]).join('')}
               </div>
               <span className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center" title="Active Account">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />

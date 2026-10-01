@@ -144,7 +144,7 @@ export default function DoctorProfile() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Doctor Professional ID Card Preview */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 text-center space-y-6 shadow-xs sticky top-28">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 text-center space-y-6 shadow-xs lg:sticky lg:top-24 self-start">
             <div className="relative inline-block mx-auto">
               <img 
                 src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=250" 

@@ -217,10 +217,10 @@ export default function Consultation() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Patient Details & Vitals Summary Card */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-6 shadow-xs sticky top-28">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-6 shadow-xs lg:sticky lg:top-24 self-start">
             <div className="flex items-center space-x-4 pb-5 border-b border-slate-100">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-xl font-black text-white shadow-md shrink-0">
-                {patientDetails.name.split(' ').map(n => n[0]).join('')}
+                {patientDetails.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
               </div>
               <div>
                 <h2 className="text-lg font-bold text-slate-900">{patientDetails.name}</h2>
@@ -319,7 +319,7 @@ export default function Consultation() {
                   onChange={(e) => setDiagnosis(e.target.value)}
                   placeholder="e.g. Essential Hypertension Grade 1"
                   required
-                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-medium shadow-xs"
+                  className="w-full h-11 px-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-medium shadow-xs"
                 />
               </div>
 
@@ -331,7 +331,7 @@ export default function Consultation() {
                   id="followUp"
                   value={followUpWeeks}
                   onChange={(e) => setFollowUpWeeks(e.target.value)}
-                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
+                  className="w-full h-11 px-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                 >
                   {['2', '4', '8', '12', '24', 'No follow-up needed'].map((w) => (
                     <option key={w} value={w}>{w === 'No follow-up needed' ? w : `${w} Weeks`}</option>
