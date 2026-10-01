@@ -100,7 +100,7 @@ export default function AllAppointments() {
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="font-bold text-xl sm:text-2xl text-white tracking-tight">
-              MediPulse <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
+              Loop Hospitals <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
             </span>
           </Link>
 
