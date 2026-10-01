@@ -42,12 +42,12 @@ export default function ManageDoctors() {
     // Simulate API fetch delay
     const timer = setTimeout(() => {
       const mockDoctors = [
-        { id: 'DOC-4091', name: 'Dr. Marcus Vance', specialization: 'Interventional Cardiology Lead', department: 'Cardiology', contact: '+1 (555) 492-8810', email: 'vance@medipulse.org', status: 'Active', fee: '$120' },
-        { id: 'DOC-4092', name: 'Dr. Elena Rostova', specialization: 'Non-Invasive Cardiologist & Echo Specialist', department: 'Cardiology', contact: '+1 (555) 492-8811', email: 'rostova@medipulse.org', status: 'Active', fee: '$135' },
-        { id: 'DOC-3081', name: 'Dr. Arthur Smith', specialization: 'Internal Medicine & Diagnostic OPD', department: 'General Medicine', contact: '+1 (555) 332-9102', email: 'smith@medipulse.org', status: 'Active', fee: '$80' },
-        { id: 'DOC-3085', name: 'Dr. Priya Patel', specialization: 'Preventative Health & Family Medicine', department: 'General Medicine', contact: '+1 (555) 332-9104', email: 'patel@medipulse.org', status: 'Active', fee: '$90' },
-        { id: 'DOC-5012', name: 'Dr. Jonathan Sterling', specialization: 'Consultant Neurologist & Stroke Care', department: 'Neurology', contact: '+1 (555) 662-7719', email: 'sterling@medipulse.org', status: 'Active', fee: '$160' },
-        { id: 'DOC-2044', name: 'Dr. Sarah Jones', specialization: 'Pediatric Specialist & Neonatology', department: 'Pediatrics', contact: '+1 (555) 221-8840', email: 'jones@medipulse.org', status: 'Inactive', fee: '$95' }
+        { id: 'DOC-4091', name: 'Dr. Marcus Vance', specialization: 'Interventional Cardiology Lead', department: 'Cardiology', contact: '+1 (555) 492-8810', email: 'vance@loophospitals.org', status: 'Active', fee: '$120' },
+        { id: 'DOC-4092', name: 'Dr. Elena Rostova', specialization: 'Non-Invasive Cardiologist & Echo Specialist', department: 'Cardiology', contact: '+1 (555) 492-8811', email: 'rostova@loophospitals.org', status: 'Active', fee: '$135' },
+        { id: 'DOC-3081', name: 'Dr. Arthur Smith', specialization: 'Internal Medicine & Diagnostic OPD', department: 'General Medicine', contact: '+1 (555) 332-9102', email: 'smith@loophospitals.org', status: 'Active', fee: '$80' },
+        { id: 'DOC-3085', name: 'Dr. Priya Patel', specialization: 'Preventative Health & Family Medicine', department: 'General Medicine', contact: '+1 (555) 332-9104', email: 'patel@loophospitals.org', status: 'Active', fee: '$90' },
+        { id: 'DOC-5012', name: 'Dr. Jonathan Sterling', specialization: 'Consultant Neurologist & Stroke Care', department: 'Neurology', contact: '+1 (555) 662-7719', email: 'sterling@loophospitals.org', status: 'Active', fee: '$160' },
+        { id: 'DOC-2044', name: 'Dr. Sarah Jones', specialization: 'Pediatric Specialist & Neonatology', department: 'Pediatrics', contact: '+1 (555) 221-8840', email: 'jones@loophospitals.org', status: 'Inactive', fee: '$95' }
       ];
       setDoctors(mockDoctors);
       setIsLoading(false);
@@ -129,7 +129,7 @@ export default function ManageDoctors() {
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="font-bold text-xl sm:text-2xl text-white tracking-tight">
-              MediPulse <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
+              Loop Hospitals <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
             </span>
           </Link>
 
@@ -404,7 +404,7 @@ export default function ManageDoctors() {
                     <input
                       type="email"
                       required
-                      placeholder="doctor@medipulse.org"
+                      placeholder="doctor@loophospitals.org"
                       value={newDoctor.email}
                       onChange={(e) => setNewDoctor({ ...newDoctor, email: e.target.value })}
                       className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
