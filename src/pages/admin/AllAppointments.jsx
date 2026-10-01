@@ -67,15 +67,15 @@ export default function AllAppointments() {
   const getStatusBadgeStyle = (status) => {
     switch (status) {
       case 'Confirmed':
-        return 'bg-blue-500/10 border-blue-500/30 text-blue-400 font-bold';
+        return 'bg-emerald-50 border-emerald-200 text-emerald-700 font-bold';
       case 'Completed':
-        return 'bg-slate-800 border-slate-700 text-slate-400 font-semibold';
+        return 'bg-slate-100 border-slate-200 text-slate-600 font-semibold';
       case 'Pending':
-        return 'bg-amber-500/10 border-amber-500/30 text-amber-400 font-bold';
+        return 'bg-amber-50 border-amber-200 text-amber-700 font-bold';
       case 'Cancelled':
-        return 'bg-rose-500/10 border-rose-500/30 text-rose-400 font-medium';
+        return 'bg-rose-50 border-rose-200 text-rose-700 font-medium';
       default:
-        return 'bg-slate-800 text-slate-300 border-slate-700';
+        return 'bg-slate-100 text-slate-600 border-slate-200';
     }
   };
 
@@ -91,28 +91,28 @@ export default function AllAppointments() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white pb-16">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-600 selection:text-white pb-16">
       {/* Admin Portal Navigation Header */}
-      <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-6 lg:px-8 shadow-xs">
         <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
-            <span className="font-bold text-xl sm:text-2xl text-white tracking-tight">
-              Loop Hospitals <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
+            <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
+              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden sm:inline">| Admin Control Panel</span>
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800 text-sm font-medium">
-            <Link to="/admin" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Dashboard</Link>
-            <Link to="/admin/doctors" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Manage Doctors</Link>
-            <Link to="/admin/patients" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Manage Patients</Link>
-            <Link to="/admin/appointments" className="px-4 py-2 rounded-lg bg-indigo-600 text-white shadow-md">All Appointments</Link>
+          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium">
+            <Link to="/admin" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Dashboard</Link>
+            <Link to="/admin/doctors" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Manage Doctors</Link>
+            <Link to="/admin/patients" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Manage Patients</Link>
+            <Link to="/admin/appointments" className="px-4 py-2 rounded-lg bg-blue-600 text-white shadow-xs font-semibold">All Appointments</Link>
           </nav>
 
           <div className="flex items-center space-x-3">
-            <Link to="/login" className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30 transition-all" title="Sign Out">
+            <Link to="/login" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 transition-all" title="Sign Out">
               <LogOut className="w-5 h-5" />
             </Link>
           </div>
@@ -122,26 +122,26 @@ export default function AllAppointments() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Mobile Navigation Bar */}
-        <div className="md:hidden flex overflow-x-auto space-x-2 pb-4 mb-6 border-b border-slate-800/80 text-sm font-medium">
-          <Link to="/admin" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Dashboard</Link>
-          <Link to="/admin/doctors" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Doctors</Link>
-          <Link to="/admin/patients" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Patients</Link>
-          <Link to="/admin/appointments" className="px-3.5 py-2 rounded-lg bg-indigo-600 text-white shrink-0">Appointments</Link>
+        <div className="md:hidden flex overflow-x-auto space-x-2 pb-4 mb-6 border-b border-slate-200 text-sm font-medium">
+          <Link to="/admin" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Dashboard</Link>
+          <Link to="/admin/doctors" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Doctors</Link>
+          <Link to="/admin/patients" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Patients</Link>
+          <Link to="/admin/appointments" className="px-3.5 py-2 rounded-lg bg-blue-600 text-white shrink-0 font-medium">Appointments</Link>
         </div>
 
         {/* Title Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Master System Appointments Log
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-slate-600 text-sm mt-1">
               Oversee hospital-wide schedule coordination, filter consultations across departments, and override cancellations.
             </p>
           </div>
 
-          <div className="inline-flex items-center space-x-2 px-3.5 py-2 bg-slate-900 rounded-xl border border-slate-800 text-xs font-semibold text-indigo-300">
-            <Calendar className="w-4 h-4 text-indigo-400" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-2 bg-white rounded-xl border border-slate-200 text-xs font-semibold text-blue-700 shadow-xs">
+            <Calendar className="w-4 h-4 text-blue-600" />
             <span>Total System Appointments: {appointments.length}</span>
           </div>
         </div>
@@ -151,28 +151,28 @@ export default function AllAppointments() {
           <div 
             className={`mb-6 p-4 rounded-2xl flex items-start space-x-3 text-sm font-medium border animate-fadeIn ${
               statusMsg.type === 'error' 
-                ? 'bg-rose-500/10 border-rose-500/30 text-rose-300' 
-                : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                ? 'bg-rose-50 border-rose-200 text-rose-700' 
+                : 'bg-emerald-50 border-emerald-200 text-emerald-700'
             }`}
           >
-            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
             <span>{statusMsg.text}</span>
           </div>
         )}
 
         {/* Search & Filter Bar */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 mb-6 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 shadow-xl">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-6 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 shadow-xs">
           <div className="flex flex-wrap items-center gap-3">
             {/* Status Dropdown / Tabs */}
             <div className="flex items-center space-x-2">
-              <span className="text-xs text-slate-400 font-semibold flex items-center space-x-1">
-                <Filter className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="text-xs text-slate-600 font-semibold flex items-center space-x-1">
+                <Filter className="w-3.5 h-3.5 text-blue-600" />
                 <span>Status:</span>
               </span>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-3 py-1.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-bold text-indigo-300 focus:outline-none focus:border-indigo-500"
+                className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-none focus:border-blue-500 shadow-xs"
               >
                 <option value="All">All Statuses ({appointments.length})</option>
                 <option value="Confirmed">Confirmed ({appointments.filter(a => a.status === 'Confirmed').length})</option>
@@ -182,15 +182,15 @@ export default function AllAppointments() {
               </select>
             </div>
 
-            <div className="h-4 w-px bg-slate-800 hidden sm:block" />
+            <div className="h-4 w-px bg-slate-200 hidden sm:block" />
 
             {/* Department Dropdown */}
             <div className="flex items-center space-x-2">
-              <span className="text-xs text-slate-400 font-semibold">Dept:</span>
+              <span className="text-xs text-slate-600 font-semibold">Dept:</span>
               <select
                 value={filterDept}
                 onChange={(e) => setFilterDept(e.target.value)}
-                className="px-3 py-1.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-bold text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-none focus:border-blue-500 shadow-xs"
               >
                 <option value="All">All Departments</option>
                 <option value="Cardiology">Cardiology</option>
@@ -201,38 +201,38 @@ export default function AllAppointments() {
           </div>
 
           <div className="relative min-w-[300px]">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search patient, doctor, ID, or reason..."
-              className="w-full pl-9 pr-4 py-2 bg-slate-950/90 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all shadow-xs"
             />
           </div>
         </div>
 
         {/* Appointments Table */}
         {isLoading ? (
-          <div className="py-20 text-center text-slate-400">
-            <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <div className="py-20 text-center text-slate-500">
+            <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <span>Loading master hospital appointments table...</span>
           </div>
         ) : filteredAppointments.length === 0 ? (
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-12 text-center text-slate-400 space-y-3">
-            <Calendar className="w-12 h-12 text-slate-600 mx-auto" />
-            <h3 className="text-lg font-bold text-white">No appointments found</h3>
+          <div className="bg-white border border-slate-200 rounded-3xl p-12 text-center text-slate-500 space-y-3 shadow-xs">
+            <Calendar className="w-12 h-12 text-slate-300 mx-auto" />
+            <h3 className="text-lg font-bold text-slate-800">No appointments found</h3>
             <p className="text-sm">No appointments match the selected status dropdown and search filters.</p>
-            <button onClick={() => { setFilterStatus('All'); setFilterDept('All'); setSearchQuery(''); }} className="mt-2 px-4 py-2 rounded-xl bg-slate-800 text-xs font-semibold text-slate-200 hover:bg-slate-700">
+            <button onClick={() => { setFilterStatus('All'); setFilterDept('All'); setSearchQuery(''); }} className="mt-2 px-4 py-2 rounded-xl bg-slate-100 text-xs font-semibold text-slate-700 hover:bg-slate-200 border border-slate-200 transition-all">
               Reset Filters
             </button>
           </div>
         ) : (
-          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+          <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-950/80 border-b border-slate-800 text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                  <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold">
                     <th className="py-4 px-6">ID & Schedule</th>
                     <th className="py-4 px-6">Patient Demographics</th>
                     <th className="py-4 px-6">Assigned Doctor & Dept</th>
@@ -241,31 +241,31 @@ export default function AllAppointments() {
                     <th className="py-4 px-6 text-right">Admin Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-sm">
+                <tbody className="divide-y divide-slate-100 text-sm">
                   {filteredAppointments.map((apt) => (
-                    <tr key={apt.id} className="hover:bg-slate-800/40 transition-colors">
+                    <tr key={apt.id} className="hover:bg-slate-50/70 transition-colors">
                       <td className="py-4 px-6">
-                        <span className="font-bold text-white block">{apt.displayDate}</span>
-                        <span className="text-xs text-indigo-400 font-mono font-semibold">{apt.time} ({apt.id})</span>
+                        <span className="font-bold text-slate-900 block">{apt.displayDate}</span>
+                        <span className="text-xs text-blue-600 font-mono font-semibold">{apt.time} ({apt.id})</span>
                       </td>
                       <td className="py-4 px-6">
-                        <div className="font-bold text-slate-100 flex items-center space-x-1.5">
-                          <User className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                        <div className="font-bold text-slate-900 flex items-center space-x-1.5">
+                          <User className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                           <span>{apt.patientName}</span>
                         </div>
-                        <span className="text-xs text-slate-400 font-mono">{apt.patientId}</span>
+                        <span className="text-xs text-slate-500 font-mono">{apt.patientId}</span>
                       </td>
                       <td className="py-4 px-6">
-                        <div className="font-bold text-slate-200 flex items-center space-x-1.5">
-                          <Stethoscope className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <div className="font-bold text-slate-800 flex items-center space-x-1.5">
+                          <Stethoscope className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                           <span>{apt.doctorName}</span>
                         </div>
-                        <span className="text-xs text-indigo-300 font-semibold block">{apt.department}</span>
+                        <span className="text-xs text-blue-600 font-semibold block">{apt.department}</span>
                       </td>
                       <td className="py-4 px-6 max-w-xs">
-                        <p className="text-xs text-slate-300 font-medium truncate" title={apt.reason}>{apt.reason}</p>
+                        <p className="text-xs text-slate-700 font-medium truncate" title={apt.reason}>{apt.reason}</p>
                         <span className="text-[11px] text-slate-500 flex items-center space-x-1 mt-0.5">
-                          {apt.mode.includes('Virtual') ? <Video className="w-3 h-3 text-purple-400 shrink-0" /> : <MapPin className="w-3 h-3 text-emerald-400 shrink-0" />}
+                          {apt.mode.includes('Virtual') ? <Video className="w-3 h-3 text-indigo-600 shrink-0" /> : <MapPin className="w-3 h-3 text-emerald-600 shrink-0" />}
                           <span>{apt.mode}</span>
                         </span>
                       </td>
@@ -280,13 +280,13 @@ export default function AllAppointments() {
                           <button
                             type="button"
                             onClick={() => handleAdminCancelAppointment(apt.id, apt.patientName, apt.doctorName)}
-                            className="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition-all inline-flex items-center space-x-1"
+                            className="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-semibold transition-all inline-flex items-center space-x-1"
                           >
                             <XCircle className="w-3.5 h-3.5" />
                             <span>Cancel</span>
                           </button>
                         ) : (
-                          <span className="text-xs text-slate-500 font-semibold italic">
+                          <span className="text-xs text-slate-400 font-semibold italic">
                             {apt.status === 'Completed' ? 'Archived' : 'Cancelled'}
                           </span>
                         )}
