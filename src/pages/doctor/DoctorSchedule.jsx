@@ -58,15 +58,15 @@ export default function DoctorSchedule() {
   const getStatusBadgeStyle = (status) => {
     switch (status) {
       case 'Confirmed':
-        return 'bg-blue-500/10 border-blue-500/30 text-blue-400 font-bold';
+        return 'bg-emerald-50 border-emerald-200 text-emerald-700 font-bold';
       case 'Completed':
-        return 'bg-slate-800 border-slate-700 text-slate-400 font-semibold';
+        return 'bg-slate-100 border-slate-200 text-slate-600 font-semibold';
       case 'Pending':
-        return 'bg-amber-500/10 border-amber-500/30 text-amber-400 font-bold';
+        return 'bg-amber-50 border-amber-200 text-amber-700 font-bold';
       case 'Cancelled':
-        return 'bg-rose-500/10 border-rose-500/30 text-rose-400 font-medium';
+        return 'bg-rose-50 border-rose-200 text-rose-700 font-medium';
       default:
-        return 'bg-slate-800 text-slate-300 border-slate-700';
+        return 'bg-slate-100 text-slate-600 border-slate-200';
     }
   };
 
@@ -92,28 +92,28 @@ export default function DoctorSchedule() {
     });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white pb-16">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-600 selection:text-white pb-16">
       {/* Doctor Portal Navigation Header */}
-      <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-6 lg:px-8 shadow-xs">
         <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
-            <span className="font-bold text-xl sm:text-2xl text-white tracking-tight">
-              Loop Hospitals <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Doctor Portal</span>
+            <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
+              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden sm:inline">| Doctor Portal</span>
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800 text-sm font-medium">
-            <Link to="/doctor" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Dashboard</Link>
-            <Link to="/doctor/schedule" className="px-4 py-2 rounded-lg bg-indigo-600 text-white shadow-md">My Schedule</Link>
-            <Link to="/doctor/consultation/APT-1092" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Live Consultation</Link>
-            <Link to="/doctor/profile" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Profile & Settings</Link>
+          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium">
+            <Link to="/doctor" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Dashboard</Link>
+            <Link to="/doctor/schedule" className="px-4 py-2 rounded-lg bg-blue-600 text-white shadow-xs font-semibold">My Schedule</Link>
+            <Link to="/doctor/consultation/APT-1092" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Live Consultation</Link>
+            <Link to="/doctor/profile" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Profile</Link>
           </nav>
 
           <div className="flex items-center space-x-3">
-            <Link to="/login" className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30 transition-all" title="Sign Out">
+            <Link to="/login" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 transition-all" title="Sign Out">
               <LogOut className="w-5 h-5" />
             </Link>
           </div>
@@ -123,31 +123,31 @@ export default function DoctorSchedule() {
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Mobile Navigation Bar */}
-        <div className="md:hidden flex overflow-x-auto space-x-2 pb-4 mb-6 border-b border-slate-800/80 text-sm font-medium">
-          <Link to="/doctor" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Dashboard</Link>
-          <Link to="/doctor/schedule" className="px-3.5 py-2 rounded-lg bg-indigo-600 text-white shrink-0">Schedule</Link>
-          <Link to="/doctor/consultation/APT-1092" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Consultation</Link>
-          <Link to="/doctor/profile" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Profile</Link>
+        <div className="md:hidden flex overflow-x-auto space-x-2 pb-4 mb-6 border-b border-slate-200 text-sm font-medium">
+          <Link to="/doctor" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Dashboard</Link>
+          <Link to="/doctor/schedule" className="px-3.5 py-2 rounded-lg bg-blue-600 text-white shrink-0 font-medium">Schedule</Link>
+          <Link to="/doctor/consultation/APT-1092" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Consultation</Link>
+          <Link to="/doctor/profile" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Profile</Link>
         </div>
 
         {/* Title & Weekly Summary Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Weekly Consultation Schedule
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-slate-600 text-sm mt-1">
               Review and sort your upcoming patient roster, check appointment reasons, and initiate live consultations.
             </p>
           </div>
-          <div className="inline-flex items-center space-x-2 px-3.5 py-2 bg-slate-900 rounded-xl border border-slate-800 text-xs font-semibold text-indigo-300">
-            <Calendar className="w-4 h-4 text-indigo-400" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-2 bg-white rounded-xl border border-slate-200 text-xs font-semibold text-blue-700 shadow-xs">
+            <Calendar className="w-4 h-4 text-blue-600" />
             <span>Week of Oct 14 - Oct 20, 2026</span>
           </div>
         </div>
 
         {/* Search & Filter Controls */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 shadow-xl">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 shadow-xs">
           <div className="flex flex-wrap gap-2">
             {['All', 'Confirmed', 'Pending', 'Completed', 'Cancelled'].map((status) => (
               <button
@@ -156,8 +156,8 @@ export default function DoctorSchedule() {
                 onClick={() => setFilterStatus(status)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold tracking-wide transition-all ${
                   filterStatus === status
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-indigo-500'
-                    : 'bg-slate-950/80 text-slate-400 border border-slate-800 hover:text-slate-200'
+                    ? 'bg-blue-600 text-white shadow-xs border border-blue-600'
+                    : 'bg-slate-50 text-slate-600 border border-slate-200 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 {status} ({status === 'All' ? appointments.length : appointments.filter(a => a.status === status).length})
@@ -166,48 +166,48 @@ export default function DoctorSchedule() {
           </div>
 
           <div className="relative min-w-[280px]">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search patient name, ID, or symptoms..."
-              className="w-full pl-9 pr-4 py-2 bg-slate-950/90 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all shadow-xs"
             />
           </div>
         </div>
 
         {isLoading ? (
-          <div className="py-20 text-center text-slate-400">
-            <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <div className="py-20 text-center text-slate-500">
+            <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <span>Loading weekly schedule...</span>
           </div>
         ) : filteredAndSortedAppointments.length === 0 ? (
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-12 text-center text-slate-400 space-y-3">
-            <Calendar className="w-12 h-12 text-slate-600 mx-auto" />
-            <h3 className="text-lg font-bold text-white">No appointments found</h3>
+          <div className="bg-white border border-slate-200 rounded-3xl p-12 text-center text-slate-500 space-y-3 shadow-xs">
+            <Calendar className="w-12 h-12 text-slate-300 mx-auto" />
+            <h3 className="text-lg font-bold text-slate-800">No appointments found</h3>
             <p className="text-sm">We couldn't find any appointments matching your search or status filter.</p>
-            <button onClick={() => { setFilterStatus('All'); setSearchQuery(''); }} className="mt-2 px-4 py-2 rounded-xl bg-slate-800 text-xs font-semibold text-slate-200 hover:bg-slate-700">
+            <button onClick={() => { setFilterStatus('All'); setSearchQuery(''); }} className="mt-2 px-4 py-2 rounded-xl bg-slate-100 text-xs font-semibold text-slate-700 hover:bg-slate-200 border border-slate-200 transition-all">
               Reset Filters
             </button>
           </div>
         ) : (
           /* Sortable Weekly Schedule Table */
-          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+          <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-950/80 border-b border-slate-800 text-xs uppercase tracking-wider text-slate-400 font-semibold select-none">
+                  <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold select-none">
                     <th 
                       onClick={() => toggleSort('date')} 
-                      className="py-4 px-6 cursor-pointer hover:text-white transition-colors flex items-center space-x-1.5"
+                      className="py-4 px-6 cursor-pointer hover:text-slate-900 transition-colors flex items-center space-x-1.5"
                     >
                       <span>Date & Time</span>
                       <ArrowUpDown className="w-3.5 h-3.5" />
                     </th>
                     <th 
                       onClick={() => toggleSort('patientName')} 
-                      className="py-4 px-6 cursor-pointer hover:text-white transition-colors"
+                      className="py-4 px-6 cursor-pointer hover:text-slate-900 transition-colors"
                     >
                       <div className="flex items-center space-x-1.5">
                         <span>Patient Demographics</span>
@@ -218,7 +218,7 @@ export default function DoctorSchedule() {
                     <th className="py-4 px-6">Mode</th>
                     <th 
                       onClick={() => toggleSort('status')} 
-                      className="py-4 px-6 cursor-pointer hover:text-white transition-colors"
+                      className="py-4 px-6 cursor-pointer hover:text-slate-900 transition-colors"
                     >
                       <div className="flex items-center space-x-1.5">
                         <span>Status</span>
@@ -228,25 +228,25 @@ export default function DoctorSchedule() {
                     <th className="py-4 px-6 text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-sm">
+                <tbody className="divide-y divide-slate-100 text-sm">
                   {filteredAndSortedAppointments.map((apt) => (
-                    <tr key={apt.id} className="hover:bg-slate-800/40 transition-colors">
+                    <tr key={apt.id} className="hover:bg-slate-50/70 transition-colors">
                       <td className="py-4 px-6">
-                        <div className="font-bold text-white flex items-center space-x-2">
+                        <div className="font-bold text-slate-900 flex items-center space-x-2">
                           <span>{apt.displayDate}</span>
                         </div>
-                        <span className="text-xs text-indigo-400 font-mono font-semibold block">{apt.time} ({apt.id})</span>
+                        <span className="text-xs text-blue-600 font-mono font-semibold block">{apt.time} ({apt.id})</span>
                       </td>
                       <td className="py-4 px-6">
-                        <span className="font-bold text-slate-100 block">{apt.patientName}</span>
-                        <span className="text-xs text-slate-400">{apt.age} yrs • {apt.gender}</span>
+                        <span className="font-bold text-slate-900 block">{apt.patientName}</span>
+                        <span className="text-xs text-slate-500">{apt.age} yrs • {apt.gender}</span>
                       </td>
-                      <td className="py-4 px-6 max-w-sm text-slate-300 font-medium">
+                      <td className="py-4 px-6 max-w-sm text-slate-700 font-medium">
                         {apt.reason}
                       </td>
-                      <td className="py-4 px-6 text-xs text-slate-400">
+                      <td className="py-4 px-6 text-xs text-slate-600">
                         <span className="flex items-center space-x-1.5">
-                          {apt.mode.includes('Virtual') ? <Video className="w-3.5 h-3.5 text-purple-400 shrink-0" /> : <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />}
+                          {apt.mode.includes('Virtual') ? <Video className="w-3.5 h-3.5 text-indigo-600 shrink-0" /> : <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />}
                           <span>{apt.mode}</span>
                         </span>
                       </td>
@@ -259,12 +259,12 @@ export default function DoctorSchedule() {
                       <td className="py-4 px-6 text-right">
                         <Link
                           to={`/doctor/consultation/${apt.id}`}
-                          className={`inline-flex items-center space-x-1 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md ${
+                          className={`inline-flex items-center space-x-1 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-xs ${
                             apt.status === 'Completed'
-                              ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'
+                              ? 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
                               : apt.status === 'Cancelled'
-                              ? 'bg-slate-900 text-slate-500 border border-slate-800 pointer-events-none'
-                              : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/30'
+                              ? 'bg-slate-50 text-slate-400 border border-slate-200 pointer-events-none'
+                              : 'bg-blue-600 hover:bg-blue-700 text-white'
                           }`}
                         >
                           <span>
