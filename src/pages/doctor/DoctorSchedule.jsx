@@ -200,10 +200,12 @@ export default function DoctorSchedule() {
                   <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold select-none">
                     <th 
                       onClick={() => toggleSort('date')} 
-                      className="py-4 px-6 cursor-pointer hover:text-slate-900 transition-colors flex items-center space-x-1.5"
+                      className="py-4 px-6 cursor-pointer hover:text-slate-900 transition-colors"
                     >
-                      <span>Date & Time</span>
-                      <ArrowUpDown className="w-3.5 h-3.5" />
+                      <div className="flex items-center space-x-1.5">
+                        <span>Date & Time</span>
+                        <ArrowUpDown className="w-3.5 h-3.5" />
+                      </div>
                     </th>
                     <th 
                       onClick={() => toggleSort('patientName')} 
