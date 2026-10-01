@@ -21,7 +21,7 @@ import {
 export default function DoctorProfile() {
   const [profileData, setProfileData] = useState({
     fullName: 'Dr. Marcus Vance',
-    email: 'marcus.vance@medipulse.org',
+    email: 'marcus.vance@loophospitals.org',
     phone: '+1 (555) 492-8810',
     specialization: 'Senior Cardiologist & Interventional Electrophysiologist',
     department: 'Cardiology',
@@ -79,7 +79,7 @@ export default function DoctorProfile() {
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="font-bold text-xl sm:text-2xl text-white tracking-tight">
-              MediPulse <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Doctor Portal</span>
+              Loop Hospitals <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Doctor Portal</span>
             </span>
           </Link>
 
