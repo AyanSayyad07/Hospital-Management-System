@@ -106,7 +106,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
           <a 
             href="#" 
             onClick={(e) => {
@@ -115,17 +115,17 @@ export default function LandingPage() {
               window.history.pushState(null, '', window.location.pathname);
               setActiveSection('');
             }}
-            className="flex items-center space-x-3 group cursor-pointer"
+            className="flex items-center space-x-3 group cursor-pointer shrink-0"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform duration-300">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
             <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              Loop Hospitals <span className="text-blue-600 font-semibold text-sm sm:text-base hidden sm:inline">| Hospital Management</span>
+              Loop Hospitals <span className="text-blue-600 font-semibold text-sm sm:text-base hidden xl:inline">| Hospital Management</span>
             </span>
           </a>
 
-          <nav className="hidden md:flex items-center space-x-2 text-sm font-medium text-slate-600">
+          <nav className="hidden md:flex items-center space-x-2 text-sm font-medium text-slate-600 absolute left-1/2 -translate-x-1/2">
             <a 
               href="#services" 
               onClick={(e) => scrollToSection(e, 'services')}
