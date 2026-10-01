@@ -83,26 +83,29 @@ export default function BookAppointment() {
 
   const selectTimeSlot = (slot) => {
     setFormData((prev) => ({ ...prev, timeSlot: slot }));
-    if (statusMsg.text) setStatusMsg({ type: '', text: '' });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setStatusMsg({ type: '', text: '' });
 
+    // Client-side validations
     if (!formData.department || !formData.doctor || !formData.date || !formData.timeSlot) {
       setStatusMsg({
         type: 'error',
-        text: 'Please complete all required fields (Department, Doctor, Date, and Time Slot).'
+        text: 'Please select a department, doctor, preferred date, and time slot.'
       });
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
-
-    // Mock submission handler logging selected appointment details
+    // Mock API call submission
     console.log('====================================');
-    console.log('📌 MOCK APPOINTMENT BOOKED (Frontend -> MERN API later):');
-    console.log('Appointment Payload:', {
+    console.log('🩺 APPOINTMENT BOOKING SUBMISSION:');
+    console.log('Payload:', {
+      patientId: 'PT-89421',
+      patientName: 'Sarah Jenkins',
       ...formData,
       status: 'Confirmed',
       bookedAt: new Date().toISOString()
@@ -113,39 +116,39 @@ export default function BookAppointment() {
       setIsSubmitting(false);
       setStatusMsg({
         type: 'success',
-        text: `Appointment confirmed with ${formData.doctor} for ${formData.date} at ${formData.timeSlot}! Details logged to console.`
+        text: `Consultation confirmed with ${formData.doctor} for ${formData.date} at ${formData.timeSlot}. Redirecting to your appointments...`
       });
 
-      // Simulate redirect to My Appointments after brief pause
       setTimeout(() => {
         navigate('/patient/appointments');
-      }, 2000);
-    }, 800);
+      }, 1500);
+    }, 700);
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white pb-16">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-600 selection:text-white pb-16">
       {/* Patient Portal Navigation Header */}
-      <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-6 lg:px-8 shadow-xs">
         <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
               <HeartPulse className="w-6 h-6 text-white animate-pulse" />
             </div>
-            <span className="font-bold text-xl sm:text-2xl text-white tracking-tight">
-              Loop Hospitals <span className="text-indigo-400 text-sm font-medium hidden sm:inline">| Patient Portal</span>
+            <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
+              Loop Hospitals <span className="text-blue-600 text-sm font-medium hidden sm:inline">| Patient Portal</span>
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-1 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800 text-sm font-medium">
-            <Link to="/patient" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Dashboard</Link>
-            <Link to="/patient/appointments" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">My Appointments</Link>
-            <Link to="/patient/book" className="px-4 py-2 rounded-lg bg-indigo-600 text-white shadow-md">Book Appointment</Link>
-            <Link to="/patient/profile" className="px-4 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all">Profile & Settings</Link>
+          <nav className="hidden md:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-sm font-medium">
+            <Link to="/patient" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Dashboard</Link>
+            <Link to="/patient/appointments" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Appointments</Link>
+            <Link to="/patient/book" className="px-4 py-2 rounded-lg bg-blue-600 text-white shadow-xs font-semibold">Book Visit</Link>
+            <Link to="/patient/records" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Medical Records</Link>
+            <Link to="/patient/profile" className="px-4 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all font-medium">Profile</Link>
           </nav>
 
           <div className="flex items-center space-x-3">
-            <Link to="/login" className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30 transition-all" title="Sign Out">
+            <Link to="/login" className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 transition-all" title="Sign Out">
               <LogOut className="w-5 h-5" />
             </Link>
           </div>
@@ -155,22 +158,23 @@ export default function BookAppointment() {
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Mobile Navigation Bar */}
-        <div className="md:hidden flex overflow-x-auto space-x-2 pb-4 mb-6 border-b border-slate-800/80 text-sm font-medium">
-          <Link to="/patient" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Dashboard</Link>
-          <Link to="/patient/appointments" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Appointments</Link>
-          <Link to="/patient/book" className="px-3.5 py-2 rounded-lg bg-indigo-600 text-white shrink-0">Book Visit</Link>
-          <Link to="/patient/profile" className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 shrink-0">Profile</Link>
+        <div className="md:hidden flex overflow-x-auto space-x-2 pb-4 mb-6 border-b border-slate-200 text-sm font-medium">
+          <Link to="/patient" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Dashboard</Link>
+          <Link to="/patient/appointments" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Appointments</Link>
+          <Link to="/patient/book" className="px-3.5 py-2 rounded-lg bg-blue-600 text-white shrink-0 font-medium">Book Visit</Link>
+          <Link to="/patient/records" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Records</Link>
+          <Link to="/patient/profile" className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 shrink-0 font-medium">Profile</Link>
         </div>
 
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-semibold mb-3 border border-indigo-500/20">
+          <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-blue-100/80 text-blue-700 text-xs font-semibold mb-3 border border-blue-200">
             <PlusCircle className="w-3.5 h-3.5" />
             <span>Instant OPD & Telemedicine Scheduling</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
             Book a Medical Consultation
           </h1>
-          <p className="text-slate-400 text-sm sm:text-base">
+          <p className="text-slate-600 text-sm sm:text-base">
             Select your preferred specialist, date, and available time slot to reserve your appointment instantly.
           </p>
         </div>
@@ -180,40 +184,40 @@ export default function BookAppointment() {
           <div 
             className={`mb-6 p-4 rounded-2xl flex items-start space-x-3 text-sm font-medium border animate-fadeIn ${
               statusMsg.type === 'error' 
-                ? 'bg-rose-500/10 border-rose-500/30 text-rose-300' 
-                : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                ? 'bg-rose-50 border-rose-200 text-rose-700' 
+                : 'bg-emerald-50 border-emerald-200 text-emerald-700'
             }`}
           >
             {statusMsg.type === 'error' ? (
-              <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
             ) : (
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
             )}
             <span>{statusMsg.text}</span>
           </div>
         )}
 
         {/* Booking Form Card */}
-        <form onSubmit={handleSubmit} className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
+        <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xs space-y-8">
           {/* Step 1: Department & Doctor */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-white flex items-center space-x-2 border-b border-slate-800 pb-3">
-              <Stethoscope className="w-5 h-5 text-indigo-400" />
+            <h2 className="text-lg font-bold text-slate-900 flex items-center space-x-2 border-b border-slate-100 pb-3">
+              <Stethoscope className="w-5 h-5 text-blue-600" />
               <span>1. Choose Specialty & Doctor</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Department Dropdown */}
               <div className="space-y-1.5">
-                <label htmlFor="department" className="text-sm font-medium text-slate-300 block">
-                  Department / Specialty <span className="text-rose-400">*</span>
+                <label htmlFor="department" className="text-sm font-semibold text-slate-700 block">
+                  Department / Specialty <span className="text-rose-500">*</span>
                 </label>
                 <select
                   id="department"
                   name="department"
                   value={formData.department}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-950/90 border border-slate-800 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                 >
                   {Object.keys(doctorsByDept).map((dept) => (
                     <option key={dept} value={dept}>{dept}</option>
@@ -223,15 +227,15 @@ export default function BookAppointment() {
 
               {/* Select Doctor Dropdown */}
               <div className="space-y-1.5">
-                <label htmlFor="doctor" className="text-sm font-medium text-slate-300 block">
-                  Select Doctor <span className="text-rose-400">*</span>
+                <label htmlFor="doctor" className="text-sm font-semibold text-slate-700 block">
+                  Select Doctor <span className="text-rose-500">*</span>
                 </label>
                 <select
                   id="doctor"
                   name="doctor"
                   value={formData.doctor}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-950/90 border border-slate-800 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                 >
                   {(doctorsByDept[formData.department] || []).map((doc) => (
                     <option key={doc.id} value={doc.name}>
@@ -245,16 +249,16 @@ export default function BookAppointment() {
 
           {/* Step 2: Date & Time Slot Grid */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-white flex items-center space-x-2 border-b border-slate-800 pb-3">
-              <Calendar className="w-5 h-5 text-indigo-400" />
+            <h2 className="text-lg font-bold text-slate-900 flex items-center space-x-2 border-b border-slate-100 pb-3">
+              <Calendar className="w-5 h-5 text-blue-600" />
               <span>2. Select Consultation Date & Time Slot</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {/* Date Input */}
               <div className="space-y-1.5 sm:col-span-1">
-                <label htmlFor="date" className="text-sm font-medium text-slate-300 block">
-                  Preferred Date <span className="text-rose-400">*</span>
+                <label htmlFor="date" className="text-sm font-semibold text-slate-700 block">
+                  Preferred Date <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="date"
@@ -264,14 +268,14 @@ export default function BookAppointment() {
                   value={formData.date}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-950/90 border border-slate-800 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                 />
               </div>
 
               {/* Time Slots Grid */}
               <div className="space-y-1.5 sm:col-span-2">
-                <label className="text-sm font-medium text-slate-300 block">
-                  Available Time Slots <span className="text-rose-400">*</span>
+                <label className="text-sm font-semibold text-slate-700 block">
+                  Available Time Slots <span className="text-rose-500">*</span>
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {timeSlots.map((slot) => (
@@ -281,8 +285,8 @@ export default function BookAppointment() {
                       onClick={() => selectTimeSlot(slot)}
                       className={`px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all ${
                         formData.timeSlot === slot
-                          ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-indigo-500'
-                          : 'bg-slate-950/80 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                          ? 'bg-blue-600 text-white shadow-xs border border-blue-600'
+                          : 'bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100'
                       }`}
                     >
                       <Clock className="w-3.5 h-3.5 shrink-0" />
@@ -296,15 +300,15 @@ export default function BookAppointment() {
 
           {/* Step 3: Visit Mode & Symptoms */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-white flex items-center space-x-2 border-b border-slate-800 pb-3">
-              <FileText className="w-5 h-5 text-indigo-400" />
+            <h2 className="text-lg font-bold text-slate-900 flex items-center space-x-2 border-b border-slate-100 pb-3">
+              <FileText className="w-5 h-5 text-blue-600" />
               <span>3. Consultation Details & Notes</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {/* Visit Type selector */}
               <div className="space-y-1.5 sm:col-span-1">
-                <label className="text-sm font-medium text-slate-300 block">
+                <label className="text-sm font-semibold text-slate-700 block">
                   Consultation Mode
                 </label>
                 <div className="grid grid-cols-1 gap-2.5">
@@ -315,11 +319,11 @@ export default function BookAppointment() {
                       onClick={() => setFormData((prev) => ({ ...prev, visitType: mode }))}
                       className={`px-4 py-3 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-all ${
                         formData.visitType === mode
-                          ? 'bg-indigo-600/20 border-2 border-indigo-500 text-indigo-300'
-                          : 'bg-slate-950/80 border border-slate-800 text-slate-400 hover:text-white'
+                          ? 'bg-blue-50 border-2 border-blue-500 text-blue-700 font-bold'
+                          : 'bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                       }`}
                     >
-                      {mode === 'In-Person OPD' ? <MapPin className="w-4 h-4 text-emerald-400" /> : <Video className="w-4 h-4 text-purple-400" />}
+                      {mode === 'In-Person OPD' ? <MapPin className="w-4 h-4 text-emerald-600" /> : <Video className="w-4 h-4 text-indigo-600" />}
                       <span>{mode}</span>
                     </button>
                   ))}
@@ -328,7 +332,7 @@ export default function BookAppointment() {
 
               {/* Symptoms / Reason Input */}
               <div className="space-y-1.5 sm:col-span-2">
-                <label htmlFor="symptoms" className="text-sm font-medium text-slate-300 block">
+                <label htmlFor="symptoms" className="text-sm font-semibold text-slate-700 block">
                   Symptoms or Reason for Visit (Optional)
                 </label>
                 <textarea
@@ -338,23 +342,23 @@ export default function BookAppointment() {
                   value={formData.symptoms}
                   onChange={handleChange}
                   placeholder="Describe any symptoms, medication queries, or specific reasons for your consultation..."
-                  className="w-full px-4 py-3 bg-slate-950/90 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                 ></textarea>
               </div>
             </div>
           </div>
 
           {/* Submit Actions */}
-          <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs text-slate-400 flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-xs text-slate-500 flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Instant confirmation sent via SMS/Email upon booking.</span>
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-sm shadow-xl shadow-indigo-600/30 hover:shadow-indigo-500/50 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-xs hover:shadow-md transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <span>Confirming Appointment...</span>
